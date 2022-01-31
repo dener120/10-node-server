@@ -1,6 +1,6 @@
 import {Router, Request, Response} from "express";
 
-import {isRegistered,getJsonData} from '../helpers/index'
+import {isRegistered,getJsonData} from '../helpers'
 
 export interface RequestWithBody extends Request {
     body: { [key: string]: string | undefined }
@@ -32,7 +32,7 @@ login.post('/login', (req: RequestWithBody, res: Response) => {
     const totalUsers = getJsonData('src/users/users.json')
 
     if (isRegistered(totalUsers, {email, password}, 'log')) {
-        req.session = {loggedIn: true};
+        req.session = {loggedIn: true, userEmail: email};
         res.redirect('/');
     } else {
         res.send('Invalid email or password');

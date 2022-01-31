@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {getJsonData, getNewID, isRegistered, writeJsonDate} from "../helpers";
+import {getJsonData, getNewID, isRegistered, writeJsonData} from "../helpers";
 import {RequestWithBody} from "./index";
 
 const registration = Router()
@@ -25,7 +25,7 @@ registration.post('/registration', (req: RequestWithBody, res: Response) => {
             }
         ];
 
-        writeJsonDate('src/users/users.json', newUsersList);
+        writeJsonData('src/users/users.json', newUsersList);
         res.redirect('/login');
     }
 });

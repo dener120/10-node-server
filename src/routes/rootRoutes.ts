@@ -8,6 +8,7 @@ root.get('/', (req: RequestWithBody, res: Response) => {
         res.send(`
             <div>
                 <div>You are logged in</div>
+                <div>${req.session.userEmail}</div>
                 <a href="/logout">Logout</a>
             </div>
         `)
